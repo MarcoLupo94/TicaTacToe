@@ -1,28 +1,42 @@
 $(document).ready(function(){
 
+ //game module
+ const Game = (() =>{
 
+ })()
   //Gameboard Module
 const GameBoard = (function(){
   let x = "x";
   let o = "o";
-  let board =  [];
+  let board =  new Array(9);
   const render = () => {
     for (let i =0; i < 9; i++) {
-      board.push({position: i , type : "a" });
+      board[i] = ("");
       let div = $('<div>');
-      div.addClass(`box ${i}`);
+      div.addClass(`box`).attr('id', `${i}`);
       $('#gameboard').append(div);
   };
-  console.log(board);
 };
+
   const score = () => {
-    board.forEach((element)=> {
-      $(`.${element.position}`).text(element.type);
-    });
+    for (let i =0; i < 9; i++)  {
+      $(`#${i}`).text(board[i]);
+    };
+
+  };
+  const changeBoard = (position) => {
+    board[position] = "X";
+
+    // if (player.type = "x"){
+    //   board[position].type = "X";
+    // }
+    // else {
+    //   board[position].type = "X";
+    // }
 
   };
 
-return { render , score}
+return { render , score, changeBoard }
 
 })();
 
@@ -33,7 +47,15 @@ const Player = (name,type) => {
 
 GameBoard.render();
 GameBoard.score();
-$('.box').on('click', () => console.log("X"));
+$('.box').on('click', (event) => {
+  const position = $(event.currentTarget).attr('id');
+  console.log(position);
+
+  GameBoard.changeBoard(position);
+  GameBoard.score();
+
+
+});
 
 
 });
