@@ -1,0 +1,16 @@
+#gameboard {
+  background-color: red;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+.box {
+  border-color: red;
+  border:1px solid black;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 100px;
+}
