@@ -7,15 +7,17 @@ const GameBoard = (function(){
   let board =  new Array(9);
   let player = x;
   render();
+  click();
 
 
-  $('.box').on('click', (event) => {
+  function click(){
+    $('.box').on('click', (event) => {
     player === x ? player = o : player = x;
     const position = $(event.currentTarget).attr('id');
     changeBoard(position);
     score();
   });
-
+  }
   function render(){
     for (let i =0; i < 9; i++) {
       board[i] = ("");
@@ -44,6 +46,8 @@ const GameBoard = (function(){
     board = new Array(9);
     $('.box').remove();
     render();
+    click();
+
   };
 
 
